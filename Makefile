@@ -562,25 +562,25 @@ validate-rstudio-image: bin/kubectl
 
 
 # This is only for the workflow action
-.PHONY: refresh-pipfilelock-files
-refresh-pipfilelock-files:
-	cd base/ubi8-python-3.8 && pipenv lock
-	cd base/ubi9-python-3.9 && pipenv lock
-	cd base/c9s-python-3.9 && pipenv lock
-	cd jupyter/minimal/ubi8-python-3.8 && pipenv lock
-	cd jupyter/minimal/ubi9-python-3.9 && pipenv lock
-	cd jupyter/datascience/ubi8-python-3.8 && pipenv lock
-	cd jupyter/datascience/ubi9-python-3.9 && pipenv lock
-	cd jupyter/pytorch/ubi9-python-3.9 && pipenv lock
-	cd jupyter/tensorflow/ubi9-python-3.9 && pipenv lock
-	cd jupyter/trustyai/ubi8-python-3.8 && pipenv lock
-	cd jupyter/trustyai/ubi9-python-3.9 && pipenv lock
-	cd runtimes/datascience/ubi8-python-3.8 && pipenv lock
-	cd runtimes/datascience/ubi9-python-3.9 && pipenv lock
-	cd runtimes/pytorch/ubi9-python-3.9 && pipenv lock
-	cd runtimes/pytorch/ubi8-python-3.8 && pipenv lock
-	cd runtimes/tensorflow/ubi8-python-3.8 && pipenv lock
-	cd runtimes/tensorflow/ubi9-python-3.9 && pipenv lock
+.PHONY: update-lock-files-minimal
+update-lock-files-minimal:
+	cd base/ubi8-python-3.8 && poetry lock --no-update
+	cd base/ubi9-python-3.9 && poetry lock --no-update
+	cd base/c9s-python-3.9 && poetry lock --no-update
+	cd jupyter/minimal/ubi8-python-3.8 && poetry lock --no-update
+	cd jupyter/minimal/ubi9-python-3.9 && poetry lock --no-update
+	cd jupyter/datascience/ubi8-python-3.8 && poetry lock --no-update
+	cd jupyter/datascience/ubi9-python-3.9 && poetry lock --no-update
+	cd jupyter/pytorch/ubi9-python-3.9 && poetry lock --no-update
+	cd jupyter/tensorflow/ubi9-python-3.9 && poetry lock --no-update
+	cd jupyter/trustyai/ubi8-python-3.8 && poetry lock --no-update
+	cd jupyter/trustyai/ubi9-python-3.9 && poetry lock --no-update
+	cd runtimes/datascience/ubi8-python-3.8 && poetry lock --no-update
+	cd runtimes/datascience/ubi9-python-3.9 && poetry lock --no-update
+	cd runtimes/pytorch/ubi9-python-3.9 && poetry lock --no-update
+	cd runtimes/pytorch/ubi8-python-3.8 && poetry lock --no-update
+	cd runtimes/tensorflow/ubi8-python-3.8 && poetry lock --no-update
+	cd runtimes/tensorflow/ubi9-python-3.9 && poetry lock --no-update
 	
 # This is only for the workflow action
 # For running manually, set the required environment variables

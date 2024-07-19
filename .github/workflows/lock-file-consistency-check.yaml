@@ -1,0 +1,39 @@
+---
+"name": "Check lock files consistency (pr)"
+"on":
+  "pull_request":
+
+permissions:
+  contents: read
+  packages: read
+  pull-requests: read
+
+concurrency:
+  group: ${{ format('lock-file-consistency-check-{0}', github.event.pull_request.number) }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: |
+            3.8
+            3.9
+
+      - name: Install poetry
+        run: pip install poetry
+
+      - name: Update lock files
+        run: |
+          make update-lock-files-minimal
+
+      - name: Check for uncommited lock file changes
+        shell: bash
+        run: |
+          git diff
+          [ "0" == "$(git diff | wc -l | tr -d ' ')" ]
